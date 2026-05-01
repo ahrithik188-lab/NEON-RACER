@@ -1,86 +1,61 @@
 body {
 margin: 0;
 background: black;
+color: white;
+text-align: center;
 font-family: Arial;
-color: white;
 }
 
-.topbar {
-text-align: center;
-padding: 10px;
+h1 {
+color: cyan;
+}
+
+.game {
+position: relative;
+width: 300px;
+height: 500px;
+margin: auto;
+overflow: hidden;
+border: 3px solid white;
 background: #111;
-color: #ff00ff;
-text-shadow: 0 0 10px #ff00ff;
 }
 
-.main {
-display: flex;
-justify-content: space-around;
-align-items: center;
-padding: 20px;
-}
-
-.panel {
-width: 250px;
-}
-
-.stat {
-margin: 15px 0;
-}
-
-.bar {
+.road {
+position: absolute;
 width: 100%;
-height: 10px;
-background: #333;
-border-radius: 10px;
+height: 200%;
+background: repeating-linear-gradient(
+black,
+black 40px,
+white 40px,
+white 60px
+);
+animation: roadMove 1s linear infinite;
 }
 
-.bar div {
-height: 100%;
-background: linear-gradient(90deg, purple, cyan);
-border-radius: 10px;
-width: 50%;
-transition: 0.5s;
+@keyframes roadMove {
+from { top: -100%; }
+to { top: 0%; }
 }
 
-.car-area img {
-width: 500px;
-border-radius: 20px;
-box-shadow: 0 0 30px purple;
+#car {
+position: absolute;
+bottom: 20px;
+left: 120px;
+width: 60px;
 }
 
-.controls {
-text-align: center;
-margin: 20px;
+.enemy {
+position: absolute;
+width: 60px;
+top: -80px;
 }
 
-.controls button {
-margin: 10px;
+#restart {
+margin-top: 10px;
 padding: 10px 20px;
-background: #111;
-border: 1px solid #ff00ff;
-color: white;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.controls button:hover {
-background: #ff00ff;
-}
-
-.drive {
-display: block;
-margin: 20px auto;
-padding: 15px 50px;
-font-size: 20px;
-background: linear-gradient(45deg, red, purple);
+background: red;
 border: none;
 color: white;
-border-radius: 10px;
 cursor: pointer;
-box-shadow: 0 0 20px red;
-}
-
-.drive:hover {
-transform: scale(1.1);
 }
