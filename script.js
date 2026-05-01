@@ -1,37 +1,115 @@
-function setCar(car) {
+let car = document.getElementById("car");
+let game = document.getElementById("game");
+let scoreText = document.getElementById("score");
+let gameOverText = document.getElementById("gameOver");
+let restartBtn = document.getElementById("restart");
+
+let position = 120;
+let score = 0;
+let speed = 3;
+let gameRunning = true;
+
+// MOVE CAR
+document.addEventListener("keydown", function(e) {
 
 ```
-let data = {
-    zilla: {
-        name: "ZILLA R35",
-        speed: 90,
-        power: 80,
-        nitro: 95,
-        img: "https://images.unsplash.com/photo-1502877338535-766e1452684a"
-    },
-    phoenix: {
-        name: "PHOENIX X1",
-        speed: 98,
-        power: 95,
-        nitro: 97,
-        img: "https://images.unsplash.com/photo-1493238792000-8113da705763"
-    },
-    mustang: {
-        name: "MUSTANG RTR",
-        speed: 85,
-        power: 88,
-        nitro: 92,
-        img: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c"
+if (!gameRunning) return;
+
+if (e.key === "a" || e.key === "ArrowLeft") position -= 20;
+if (e.key === "d" || e.key === "ArrowRight") position += 20;
+
+if (position < 0) position = 0;
+if (position > 240) position = 240;
+
+car.style.left = position + "px";
+```
+
+});
+
+// CREATE ENEMY
+function createEnemy() {
+if (!gameRunning) return;
+
+```
+let enemy = document.createElement("img");
+enemy.src = "https://cdn-icons-png.flaticon.com/512/743/743007.png";
+enemy.classList.add("enemy");
+
+let x = Math.floor(Math.random() * 240);
+enemy.style.left = x + "px";
+
+game.appendChild(enemy);
+
+moveEnemy(enemy);
+```
+
+}
+
+// MOVE ENEMY
+function moveEnemy(enemy) {
+
+```
+let top = -80;
+
+let interval = setInterval(() => {
+
+    if (!gameRunning) {
+        clearInterval(interval);
+        return;
     }
-};
 
-let selected = data[car];
+    top += speed;
+    enemy.style.top = top + "px";
 
-document.getElementById("carName").innerText = selected.name;
-document.getElementById("speed").style.width = selected.speed + "%";
-document.getElementById("power").style.width = selected.power + "%";
-document.getElementById("nitro").style.width = selected.nitro + "%";
-document.getElementById("carImg").src = selected.img;
+    // COLLISION
+    let carRect = car.getBoundingClientRect();
+    let enemyRect = enemy.getBoundingClientRect();
+
+    if (
+        carRect.left < enemyRect.right &&
+        carRect.right > enemyRect.left &&
+        carRect.top < enemyRect.bottom &&
+        carRect.bottom > enemyRect.top
+    ) {
+        gameOver();
+    }
+
+    if (top > 500) {
+        enemy.remove();
+        clearInterval(interval);
+    }
+
+}, 20);
 ```
 
+}
+
+// SPAWN TRAFFIC
+setInterval(() => {
+if (gameRunning) createEnemy();
+}, 1500);
+
+// SCORE SYSTEM
+setInterval(() => {
+if (gameRunning) {
+score++;
+scoreText.innerText = "Score: " + score;
+
+```
+    if (score % 10 === 0) speed += 0.5;
+}
+```
+
+}, 500);
+
+// GAME OVER
+function gameOver() {
+gameRunning = false;
+gameOverText.style.display = "block";
+restartBtn.style.display = "block";
+}
+
+// RESTART
+function restartGame() {
+location.reload();
 }
