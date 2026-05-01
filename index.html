@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neon Racer Garage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <h2>🏁 NEON RACER</h2>
+</div>
+
+<div class="main">
+
+<!-- LEFT PANEL -->
+<div class="panel">
+    <h3 id="carName">ZILLA R35</h3>
+
+    <div class="stat">Speed <div class="bar"><div id="speed"></div></div></div>
+    <div class="stat">Power <div class="bar"><div id="power"></div></div></div>
+    <div class="stat">Nitro <div class="bar"><div id="nitro"></div></div></div>
+</div>
+
+<!-- CAR IMAGE -->
+<div class="car-area">
+    <img id="carImg" src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="controls">
+    <button onclick="setCar('zilla')">ZILLA</button>
+    <button onclick="setCar('phoenix')">PHOENIX</button>
+    <button onclick="setCar('mustang')">MUSTANG</button>
+</div>
+
+<button class="drive">DRIVE</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
