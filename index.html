@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Neon Racer Garage</title>
+    <title>Mini Racer Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="topbar">
-    <h2>🏁 NEON RACER</h2>
-</div>
+<h1>🚗 MINI RACER PRO</h1>
+<h2 id="score">Score: 0</h2>
 
-<div class="main">
+<div class="game" id="game">
 
-<!-- LEFT PANEL -->
-<div class="panel">
-    <h3 id="carName">ZILLA R35</h3>
+```
+<div class="road"></div>
 
-    <div class="stat">Speed <div class="bar"><div id="speed"></div></div></div>
-    <div class="stat">Power <div class="bar"><div id="power"></div></div></div>
-    <div class="stat">Nitro <div class="bar"><div id="nitro"></div></div></div>
-</div>
-
-<!-- CAR IMAGE -->
-<div class="car-area">
-    <img id="carImg" src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
-</div>
+<img id="car" src="https://cdn-icons-png.flaticon.com/512/743/743922.png">
+```
 
 </div>
 
-<!-- BUTTONS -->
-
-<div class="controls">
-    <button onclick="setCar('zilla')">ZILLA</button>
-    <button onclick="setCar('phoenix')">PHOENIX</button>
-    <button onclick="setCar('mustang')">MUSTANG</button>
-</div>
-
-<button class="drive">DRIVE</button>
+<h2 id="gameOver" style="display:none;">💥 GAME OVER</h2>
+<button id="restart" onclick="restartGame()" style="display:none;">RESTART</button>
 
 <script src="script.js"></script>
 
